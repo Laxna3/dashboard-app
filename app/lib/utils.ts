@@ -1,3 +1,4 @@
+//reusable helper functions that could be used anywhere
 import { Revenue } from './definitions';
 
 export const formatCurrency = (amount: number) => {

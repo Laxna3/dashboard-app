@@ -1,3 +1,4 @@
+//we can write sql queries anywhere but i prefer to write in libs/data.ts
 import postgres from 'postgres';
 import {
   CustomerField,
@@ -16,12 +17,12 @@ export async function fetchRevenue() {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue[]>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
 
     return data;
   } catch (error) {
@@ -40,7 +41,7 @@ export async function fetchLatestInvoices() {
       LIMIT 5`;
 
     const latestInvoices = data.map((invoice) => ({
-      ...invoice,
+      ...invoice,////iterate over the data array, each element is represented by the parameter
       amount: formatCurrency(invoice.amount),
     }));
     return latestInvoices;
